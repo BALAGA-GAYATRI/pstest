@@ -1,0 +1,22 @@
+    
+name: Run PS scipt for file storage
+on: workflow_dispatch
+#   push:
+#     paths:
+#       - '.github/workflows/run-azure-login-action-integration-tests.yml'
+
+jobs: 
+  storage-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+        
+      - name: Publish to Azure blob
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            $context = New-AzStorageContext -StorageAccountName pstestaccount -SasToken "${{secrets.azureBlobQuerystring}}"
+            Set-AzStorageBlobContent -File ./build-vm-image-master.zip -Container pstestcontainer -Context $context.Context -Force
+            $Context | Get-AzStorageBlob -Container "pstestcontainer" 
+          azPSVersion: "latest"
