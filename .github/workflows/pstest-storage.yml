@@ -26,4 +26,4 @@ jobs:
         with:
           inlineScript: |
            Get-AzContext
-          azPSVersion: "latest"
+          azPSVersion: '3.1.0'
