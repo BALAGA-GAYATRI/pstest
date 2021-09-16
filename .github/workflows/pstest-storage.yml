@@ -17,12 +17,12 @@ jobs:
         with:
           inlineScript: |
             $context = New-AzStorageContext -StorageAccountName pstestaccount -SasToken "${{secrets.azureBlobQuerystring}}"
-            Set-AzStorageBlobContent -File ./message.rpmsg -Container pstestcontainer -Context $context.Context -Force
-            Set-AzStorageBlobContent -File ./message.rpmsg -Container pstestcontainer -Context $context.Context -Force
-            Set-AzStorageBlobContent -File ./message.rpmsg -Container pstestcontainer -Context $context.Context -Force
-            Set-AzStorageBlobContent -File ./message.rpmsg -Container pstestcontainer -Context $context.Context -Force
+            Set-AzStorageBlobContent -File ./pscales.zip -Container pstestcontainer -Context $context.Context -Force
+            Set-AzStorageBlobContent -File ./pscales(1).zip-Container pstestcontainer -Context $context.Context -Force
+            Set-AzStorageBlobContent -File ./pscales(2).zip -Container pstestcontainer -Context $context.Context -Force
             $Context | Get-AzStorageBlob -Container "pstestcontainer" 
           azPSVersion: "latest"
+          
 #       - name: 'Az CLI login with subscription'
 #         uses: azure/login@v1
 #         with:
