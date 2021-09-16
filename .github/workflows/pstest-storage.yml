@@ -12,11 +12,18 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
         
+#       - name: Publish to Azure blob
+#         uses: azure/powershell@v1
+#         with:
+#           inlineScript: |
+#             $context = New-AzStorageContext -StorageAccountName pstestaccount -SasToken "${{secrets.azureBlobQuerystring}}"
+#             Remove-AzStorageBlob -Container "pstestcontainer" -Blob "build-vm-image-master.zip"
+#             Set-AzStorageBlobContent -File ./build-vm-image-master.zip -Container pstestcontainer -Context $context.Context -Force
+#             $Context | Get-AzStorageBlob -Container "pstestcontainer" 
+#           azPSVersion: "latest"
       - name: Publish to Azure blob
         uses: azure/powershell@v1
         with:
           inlineScript: |
-            $context = New-AzStorageContext -StorageAccountName pstestaccount -SasToken "${{secrets.azureBlobQuerystring}}"
-            Set-AzStorageBlobContent -File ./build-vm-image-master.zip -Container pstestcontainer -Context $context.Context -Force
-            $Context | Get-AzStorageBlob -Container "pstestcontainer" 
+           Get-AzContext
           azPSVersion: "latest"
