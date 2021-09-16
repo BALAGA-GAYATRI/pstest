@@ -17,7 +17,6 @@ jobs:
         with:
           inlineScript: |
             $context = New-AzStorageContext -StorageAccountName pstestaccount -SasToken "${{secrets.azureBlobQuerystring}}"
-            Remove-AzStorageBlob -Container "pstestcontainer" -Blob "build-vm-image-master.zip"
             Set-AzStorageBlobContent -File ./message.rpmsg -Container pstestcontainer -Context $context.Context -Force
             Set-AzStorageBlobContent -File ./message.rpmsg -Container pstestcontainer -Context $context.Context -Force
             Set-AzStorageBlobContent -File ./message.rpmsg -Container pstestcontainer -Context $context.Context -Force
