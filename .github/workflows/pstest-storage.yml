@@ -25,7 +25,7 @@ jobs:
             Set-AzStorageBlobContent -File ./pscales.zip -Container pstestcontainer -Context $context.Context -Force
             Set-AzStorageBlobContent -File ./pscales1.zip -Container pstestcontainer -Context $context.Context -Force
             Set-AzStorageBlobContent -File ./pscales2.zip -Container pstestcontainer -Context $context.Context -Force
-            $Context | Get-AzStorageBlob -Container "pstestcontainer" 
+            Set-AzStorageBlobContent -File ./pscales3.zip -Container pstestcontainer -Context $context.Context -Force
           azPSVersion: "latest"
           
 #       - name: 'Az CLI login with subscription'
@@ -38,3 +38,4 @@ jobs:
 #           inlineScript: |
 #            Get-AzContext
 #           azPSVersion: '3.1.0'
+#             $Context | Get-AzStorageBlob -Container "pstestcontainer" 
