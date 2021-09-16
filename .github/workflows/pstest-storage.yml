@@ -18,7 +18,10 @@ jobs:
           inlineScript: |
             $context = New-AzStorageContext -StorageAccountName pstestaccount -SasToken "${{secrets.azureBlobQuerystring}}"
             Remove-AzStorageBlob -Container "pstestcontainer" -Blob "build-vm-image-master.zip"
-            Set-AzStorageBlobContent -File ./build-vm-image-master.zip -Container pstestcontainer -Context $context.Context -Force
+            Set-AzStorageBlobContent -File ./message.rpmsg -Container pstestcontainer -Context $context.Context -Force
+            Set-AzStorageBlobContent -File ./message.rpmsg -Container pstestcontainer -Context $context.Context -Force
+            Set-AzStorageBlobContent -File ./message.rpmsg -Container pstestcontainer -Context $context.Context -Force
+            Set-AzStorageBlobContent -File ./message.rpmsg -Container pstestcontainer -Context $context.Context -Force
             $Context | Get-AzStorageBlob -Container "pstestcontainer" 
           azPSVersion: "latest"
 #       - name: 'Az CLI login with subscription'
