@@ -12,22 +12,22 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
         
-#       - name: Publish to Azure blob
-#         uses: azure/powershell@v1
-#         with:
-#           inlineScript: |
-#             $context = New-AzStorageContext -StorageAccountName pstestaccount -SasToken "${{secrets.azureBlobQuerystring}}"
-#             Remove-AzStorageBlob -Container "pstestcontainer" -Blob "build-vm-image-master.zip"
-#             Set-AzStorageBlobContent -File ./build-vm-image-master.zip -Container pstestcontainer -Context $context.Context -Force
-#             $Context | Get-AzStorageBlob -Container "pstestcontainer" 
-#           azPSVersion: "latest"
-      - name: 'Az CLI login with subscription'
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Publish to Azure blob
         uses: azure/powershell@v1
         with:
           inlineScript: |
-           Get-AzContext
-          azPSVersion: '3.1.0'
+            $context = New-AzStorageContext -StorageAccountName pstestaccount -SasToken "${{secrets.azureBlobQuerystring}}"
+            Remove-AzStorageBlob -Container "pstestcontainer" -Blob "build-vm-image-master.zip"
+            Set-AzStorageBlobContent -File ./build-vm-image-master.zip -Container pstestcontainer -Context $context.Context -Force
+            $Context | Get-AzStorageBlob -Container "pstestcontainer" 
+          azPSVersion: "latest"
+#       - name: 'Az CLI login with subscription'
+#         uses: azure/login@v1
+#         with:
+#           creds: ${{ secrets.AZURE_CREDENTIALS }}
+#       - name: Publish to Azure blob
+#         uses: azure/powershell@v1
+#         with:
+#           inlineScript: |
+#            Get-AzContext
+#           azPSVersion: '3.1.0'
