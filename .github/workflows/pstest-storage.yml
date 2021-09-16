@@ -12,6 +12,11 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
         
+      - name: 'Az CLI login with subscription'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
       - name: Publish to Azure blob
         uses: azure/powershell@v1
         with:
