@@ -25,7 +25,7 @@ jobs:
             Set-AzStorageBlobContent -File ./node-hello-master.zip -Container pstestcontainer -Context $context.Context -Force
             Set-AzStorageBlobContent -File ./node-hello-master1.zip -Container pstestcontainer -Context $context.Context -Force
             Set-AzStorageBlobContent -File ./node-hello-master2.zip -Container pstestcontainer -Context $context.Context -Force
-          azPSVersion: "3.1.0"
+          azPSVersion: "latest"
           
 #       - name: 'Az CLI login with subscription'
 #         uses: azure/login@v1
